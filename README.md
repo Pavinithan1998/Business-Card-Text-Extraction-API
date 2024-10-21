@@ -83,7 +83,7 @@ http://127.0.0.1:8000/api/business_card_text_extraction/docs
 #### 2. Business Card Text Extraction (OCR + NER)
 
 - **URL**: `/api/business_card_text_extraction/extract_text`
-- **Method**: `POST`
+- **Method**: `GET`
 - **Description**: Upload an image of a business card. Extract text using OCR and structure it in JSON format using NER.
 - **Request**:
     - `image`: The business card image file (JPEG, PNG, etc.).
@@ -93,7 +93,7 @@ http://127.0.0.1:8000/api/business_card_text_extraction/docs
 #### 3. Business Card Text Extraction (GPT-4 Vision)
 
 - **URL**: `/api/business_card_text_extraction/extract_text_using_gpt`
-- **Method**: `POST`
+- **Method**: `GET`
 - **Description**: Upload an image of a business card. Extract structured information directly from the image using GPT-4 Vision.
 - **Request**:
     - `image`: The business card image file (JPEG, PNG, etc.).
