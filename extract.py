@@ -58,6 +58,20 @@ def extract_social_media_ner(text):
 
     return social_media
 
+def extract_address_ner(text): 
+    # extract address using regular expressions 
+    address_pattern = r'(\d{1,4}\s\w+\s(?:Street|St|Avenue|Ave|Road|Rd|Boulevard|Blvd|Lane|Ln|Drive|Dr)\,?\s?\w+?\s?\w+?,?\s?\d{5}|\bP\.O\.\sBox\s\d+\b)'
+    address_matches = re.findall(address_pattern, text, re.IGNORECASE)
+
+    # used spaCy's NER
+    doc = nlp(text)
+    additional_addresses = [ent.text for ent in doc.ents if ent.label_ == "GPE"]
+
+    # Combining both regex and NER results
+    addresses = list(set(address_matches + additional_addresses))
+
+    return addresses[0] if addresses else None
+
 def extract_text_from_image(image_bytes):
     """Extract text from an image using OCR."""
     ocr = PaddleOCR()
@@ -82,12 +96,14 @@ def restructure_extracted_text_to_json(extracted_text):
     website = extract_website_ner(extracted_text)
     social_media = extract_social_media_ner(extracted_text)
     agent_name, company_name = extract_entities_with_ner(extracted_text)
+    address = extract_address_ner(extracted_text) # adding this as bonus
 
     return {
         "email": email[0] if email else None,
         "phone_numbers": phone_numbers,
         "agent_name": agent_name,
         "company_name": company_name,
+        "address": address,
         "web_presence": {
             "website": website[0] if website else None,
             "facebook": social_media["facebook"],
