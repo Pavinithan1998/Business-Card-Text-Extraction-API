@@ -5,14 +5,14 @@
 
 The **Business Card Text Extraction API** provides an interface for extracting structured information from business card images. It supports two primary methods for extracting data:
 1. **OCR and NER-based extraction** using PaddleOCR, spaCy, and regular expressions.
-2. **OCR and NER-based extraction** using the OpenAI GPT-4 Vision model to directly analyze the image and extract structured information in JSON format.
+2. **GPT-based extraction** using the OpenAI GPT-4 Vision model to directly analyze the image and extract structured information in JSON format.
 
 This API is integrated with Azure AD for authentication using JWT tokens.
 
 ## Features
 
 - **Extract Data from Business Cards**: Extracts key information such as email, phone numbers, agent name, company name, and web presence (social media, website).
-- **Azure AD JWT Authentication**: Ensures secure access using Azure Active Directory and JWT token validation.
+- **Azure AD JWT Authentication**: Ensures secure access using Azure Active Directory and JWT token validation. 
 - **OCR-based Extraction**: Uses PaddleOCR for text extraction and spaCy for entity recognition.
 - **GPT-4 Vision-based Extraction**: Uses OpenAI's GPT-4 Vision model to directly analyze the image and return structured information.
 
@@ -88,7 +88,7 @@ http://127.0.0.1:8000/api/business_card_text_extraction/docs
 - **Request**:
     - `image`: The business card image file (JPEG, PNG, etc.).
 - **Response**:
-    - Structured JSON output with email, phone numbers, agent name, company name, and web presence (website, Facebook, Instagram, Twitter).
+    - Structured JSON output with email, phone numbers, agent name, company name, address, and web presence (website, Facebook, Instagram, Twitter).
 
 #### 3. Business Card Text Extraction (GPT-4 Vision)
 
